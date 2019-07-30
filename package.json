@@ -1,0 +1,26 @@
+{
+  "name": "jkanime",
+  "version": "1.0.0",
+  "description": "A Custom jkanime API",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch 'src/*.ts' --exec ts-node-dev src/index.ts"
+  },
+  "keywords": [
+    "jkanime",
+    "anime",
+    "api"
+  ],
+  "author": "Chris Michael",
+  "license": "MIT",
+  "dependencies": {
+    "@types/cheerio": "^0.22.12",
+    "@types/node": "^12.6.8",
+    "@types/node-fetch": "^2.5.0",
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "node-fetch": "^2.6.0",
+    "ts-node-dev": "^1.0.0-pre.40",
+    "typescript": "^3.5.3"
+  }
+}
