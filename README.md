@@ -11,6 +11,8 @@
 # A Custom jkanime API
 *This API will give you access to the content of the jkanime page, you can see the entire catalog and enjoy each chapter.*
 
+<img src="assets/jkanime-logo.png">
+
 
 ## Install
 
