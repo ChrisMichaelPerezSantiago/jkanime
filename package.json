@@ -1,26 +1,71 @@
 {
   "name": "jkanime",
-  "version": "1.0.0",
-  "description": "A Custom jkanime API",
-  "main": "index.js",
+  "version": "2.0.0",
+  "description": "This API will give you access to the content of the jkanime page, you can see the entire catalog and enjoy each chapter.",
+  "main": "./src/api/api.js",
   "scripts": {
-    "start": "nodemon --watch 'src/*.ts' --exec ts-node-dev src/index.ts"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "dev-api": "nodemon src/api/api",
+    "lint": "eslint --fix src",
+    "audit": "snyk test",
+    "test": "mocha -w"
   },
   "keywords": [
     "jkanime",
     "anime",
-    "api"
+    "anime api",
+    "jkanime api"
   ],
-  "author": "Chris Michael",
+  "author": {
+    "name": "Chris Michael",
+    "email": "chrisperezsantiago1@gmail.com",
+    "url": "http://personal-porfolio.chrismichael.now.sh",
+    "social": {
+      "github": "https://github.com/ChrisMichaelPerezSantiago",
+      "twitter": "https://twitter.com/Chris5855M"
+    }
+  },
+  "contributors": [
+    {
+      "name": "Chris Michael",
+      "url": "https://github.com/ChrisMichaelPerezSantiago",
+      "reason": "Project Leader, and Developer"
+    }
+  ],
+  "engines": {
+    "node": ">= 10.16.x",
+    "npm": ">= 6.9.x"
+  },
+  "bugs": {
+    "url": "https://github.com/ChrisMichaelPerezSantiago/jkanime/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChrisMichaelPerezSantiago/jkanime.git"
+  },
   "license": "MIT",
   "dependencies": {
-    "@types/cheerio": "^0.22.12",
-    "@types/node": "^12.6.8",
-    "@types/node-fetch": "^2.5.0",
+    "@joshuaavalon/cheerio-table-parser": "^1.0.3",
     "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
-    "node-fetch": "^2.6.0",
-    "ts-node-dev": "^1.0.0-pre.40",
-    "typescript": "^3.5.3"
+    "compose-middleware": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "fuse.js": "^3.4.5",
+    "helmet": "^3.15.0",
+    "morgan": "^1.9.1",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "snyk": "^1.185.5",
+    "supertest": "^3.3.0"
   }
 }
