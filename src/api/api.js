@@ -91,11 +91,16 @@ const latestAnimeAdded = async() =>{
       type: extra[0] ? extra[0].type : 'unknown',
       synopsis: extra[0] ? extra[0].sinopsis : 'unknown',
       state: extra[0] ? extra[0].state : 'unknown',
-      episodes: extra[0] ? extra[0].episodes : 'unknown'
+      episodes: extra[0] ? extra[0].episodes : 'unknown',
+      episodeList: extra[0] ? extra[0].episodeList : 'unknown'
     })))
   });
   return await Promise.all(promises);
 };
+
+//latestAnimeAdded().then(doc =>{
+//  console.log(doc)
+//})
 
 const getAnimeOvas = async (page) => {
   const res = await fetch(`${ovasUrl}/${page}`);
@@ -226,30 +231,49 @@ const searchAnime = async (query) => {
   return await Promise.all(promises)
 };
 
-const animeContentHandler = async (id) => {
+const animeContentHandler = async(id) => {
   const res = await fetch(`${url}/${id}`);
   const body = await res.text();
   const extra = [];
   const $ = cheerio.load(body);
-  const episodes_aired = $('div#container div.left-container div.navigation a').text().split('-')[1];
+  const eps_temp_list = [];
+  let episodes_aired = '';
+  $('div#container div.left-container div.navigation a').each(async(index , element) => {
+      const $element = $(element);
+      const total_eps = $element.text();
+      eps_temp_list.push(total_eps);
+  })
+  try{episodes_aired = eps_temp_list[0].split('-')[1].trim();}catch(err){}
+  const episodes_List = Array.from({length: episodes_aired} , (v , k) =>{
+    return{
+      episode: k + 1,
+      id: id
+    }
+  });
+  
   $('div#container div.serie-info').each(async(index, element) => {
     const $element = $(element);
-    const sinopsis = $element.find('div.sinopsis-box p.pc').text().trim();
-    
-    const type = $element.find('div.info-content div.info-field span.info-value').first().text().split('\n')[0].trim();
-    const state = $element.find('div.info-content div.info-field span.info-value b').last().text();
-    
+    let sinopsis = $element.find('div.sinopsis-box p.pc').text().trim();
+    let type = $element.find('div.info-content div.info-field span.info-value').first().text().split('\n')[0].trim();
+    let state = $element.find('div.info-content div.info-field span.info-value b').last().text();
     const content = {
       type: type,
       sinopsis: sinopsis,
       state: state,
-      episodes: episodes_aired
+      episodes: episodes_aired,
+      episodeList: episodes_List
     }
     extra.push(content);
   })
   return await Promise.all(extra);
 };
 
+//latestAnimeAdded().then(doc =>{
+//  console.log(doc)
+//})
+//animeContentHandler('psycho-pass-sinners-of-the-system-case2-first-guardian')
+//  .then(d => console.log(d))
+//animeContentHandler('val-x-love')
 
 module.exports = {
   latestAnimeAdded,
