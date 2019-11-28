@@ -87,5 +87,17 @@ router.get('/video/:id/:chapter/:serverNumber', (req , res) => {
     });
 });
 
+router.get('/schedule/:day', (req , res) => {
+  const day = req.params.day;
+  api.schedule(day)
+    .then(schedule => {
+      res.status(200).json({
+        schedule
+      });
+    }).catch((err) =>{
+      console.log(err)
+    });
+});
+
 
 module.exports = router;
