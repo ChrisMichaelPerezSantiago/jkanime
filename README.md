@@ -1,4 +1,4 @@
-# **:triangular_flag_on_post: JKANIME** (version 2.0.1)
+# **:triangular_flag_on_post: JKANIME** (version 2.0.2)
 
 ![node version](https://img.shields.io/badge/node->=10.16.x-brightgreen.svg)
 ![npm version](https://img.shields.io/badge/npm->=6.9.x-brightgreen.svg)
@@ -122,7 +122,68 @@ npm test
 | Verystream     |   7        |
 
 
-### searchAnime(title)
+### latestAnimeAdded()
+```json
+// 20191127204043
+// http://localhost:5000/api/v1/latestAnimes
+
+{
+  "animes": [
+    {
+      "title": "Pokemon (2019)",
+      "id": "pokemon-2019",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/pokemon-2019.jpg",
+      "type": "Serie",
+      "synopsis": "Sinopsis: Nueva temporada de Pokemon, titulada como la serie original de 1997.La nueva serie contara con todas las regiones cubiertas en la franquicia hasta el momento, desde la region de Kanto hasta la region de Galar.",
+      "state": "En emision",
+      "episodes": "2",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "pokemon-2019"
+        },
+        {
+          "episode": 2,
+          "id": "pokemon-2019"
+        }
+      ]
+    },
+    {
+      "title": "Seishun Buta Yarou wa Yumemiru Shoujo no Yume wo Minai",
+      "id": "seishun-buta-yarou-wa-yumemiru-shoujo-no-yume-wo-minai",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/seishun-buta-yarou-wa-yumemiru-shoujo-no-yume-wo-minai.jpg",
+      "type": "Pelicula",
+      "synopsis": "Sinopsis: Pelicula de Gekijouban Seishun Buta Yaro wa Yumemiru Shoujo no Yume wo Minai",
+      "state": "Concluido",
+      "episodes": "1",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "seishun-buta-yarou-wa-yumemiru-shoujo-no-yume-wo-minai"
+        }
+      ]
+    },
+    {
+      "title": "Quanzhi Gaoshou zhi Dianfeng Rongyao",
+      "id": "quanzhi-gaoshou-zhi-dianfeng-rongyao",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/quanzhi-gaoshou-zhi-dianfeng-rongyao.jpg",
+      "type": "Pelicula",
+      "synopsis": "Sinopsis: Pelicula The King's Avatar Movie",
+      "state": "Concluido",
+      "episodes": "1",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "quanzhi-gaoshou-zhi-dianfeng-rongyao"
+        }
+      ]
+    },
+  ]
+}
+```
+
+
+### searchAnime([title])
 - *For now only returns the titles of the first page of jkanime*
 
 | title       |
@@ -130,8 +191,8 @@ npm test
 | anime title |
 
 ```json
-// 20191017205421
-// http://localhost:5000/api/v1/search/tokyo
+// 20191127204642
+// http://localhost:5000/api/v1/search/tokyo%20ghoul
 
 {
   "animes": [
@@ -142,21 +203,113 @@ npm test
       "type": "Serie / 12 Eps",
       "synopsis": "En Tokyo ocurren asesinatos misteriosos cometidos por Ghouls, seres desconocidos que comen carne humana, un día Kaneki Ken un joven de 18 años que cursa la Universidad conoce a una chica en un restaurante y la invita a salir, pero luego se da cuenta que ella es un Ghoul y sufre un ataque de parte…",
       "state": "Concluido",
-      "episodes": "12"
+      "episodes": "12",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "tokyo-ghoul"
+        },
+        {
+          "episode": 2,
+          "id": "tokyo-ghoul"
+        },
+        {
+          "episode": 3,
+          "id": "tokyo-ghoul"
+        },
+        {
+          "episode": 4,
+          "id": "tokyo-ghoul"
+        },
+        {
+          "episode": 5,
+          "id": "tokyo-ghoul"
+        },
+        {
+          "episode": 6,
+          "id": "tokyo-ghoul"
+        },
+        {
+          "episode": 7,
+          "id": "tokyo-ghoul"
+        },
+        {
+          "episode": 8,
+          "id": "tokyo-ghoul"
+        },
+        {
+          "episode": 9,
+          "id": "tokyo-ghoul"
+        },
+        {
+          "episode": 10,
+          "id": "tokyo-ghoul"
+        }
+      ]
+    },
+    {
+      "title": "Tokyo Ghoul √A",
+      "id": "tokyo-ghoul-2",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/tokyo-ghoul-2.jpg",
+      "type": "Serie / 12 Eps",
+      "synopsis": "Segunda temporada de la serie que tiene lugar en Tokio, donde unos misteriosos demonios están devorando a los humanos. La gente vive atemorizada por estos demonios cuya identidad es todo un misterio. ",
+      "state": "Concluido",
+      "episodes": "12",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "tokyo-ghoul-2"
+        },
+        {
+          "episode": 2,
+          "id": "tokyo-ghoul-2"
+        },
+        {
+          "episode": 3,
+          "id": "tokyo-ghoul-2"
+        },
+        {
+          "episode": 4,
+          "id": "tokyo-ghoul-2"
+        },
+        {
+          "episode": 5,
+          "id": "tokyo-ghoul-2"
+        },
+        {
+          "episode": 6,
+          "id": "tokyo-ghoul-2"
+        },
+        {
+          "episode": 7,
+          "id": "tokyo-ghoul-2"
+        },
+        {
+          "episode": 8,
+          "id": "tokyo-ghoul-2"
+        },
+        {
+          "episode": 9,
+          "id": "tokyo-ghoul-2"
+        },
+        {
+          "episode": 10,
+          "id": "tokyo-ghoul-2"
+        }
+      ]
     },
   ]
 }
 ```
 
-### getAnimesListByLetter(letter , page)
+### getAnimesListByLetter([letter] , [page])
 - *Returns a list of `20 titles` per N pages*
 
 | a-z         | page            |
 | ----------- | --------------- |
 | list of animes that the title begin with a letter [a-z]| actual page|
-
 ```json
-// 20191017205730
+// 20191127205028
 // http://localhost:5000/api/v1/letter/a/1
 
 {
@@ -167,14 +320,66 @@ npm test
       "poster": "https://cdn.jkanime.net/assets/images/animes/image/abarenbou-kishi-matsutarou.jpg",
       "type": "Serie",
       "synopsis": "Matsutarou Sakaguchi es un hombre matón gigante con fuerza mucho más allá de la gente común. Él nunca pronunció palabras como \"trabajar duro\", \"luchar\" y \"sueño\" como el típico protagonista del manga shonen. Sin embargo, él es más fuerte que nadie y sin igual en la lucha de sumo. Su mayor…",
+      "state": "unknown",
+      "episodes": "23",
+      "episodeList": null
+    },
+    {
+      "title": "Abenobashi Mahou Shoutengai",
+      "id": "abenobashi-mahou-shoutengai",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/abenobashi-mahou-shoutengai.jpg",
+      "type": "Serie",
+      "synopsis": "Arumi y Sasshi viven su ultimo verano juntos en el distrito comercial Abenobashi, ya que la familia de Arumi se trasladara a otra ciudad. Sin embargo su abuelo sufre un accidente a raiz del cual tanto Arumi como Sasshi son transportados a un Abenobashi alternativo donde todo es posible y lo absurdo…",
       "state": "Concluido",
-      "episodes": "23"
+      "episodes": "13",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "abenobashi-mahou-shoutengai"
+        },
+        {
+          "episode": 2,
+          "id": "abenobashi-mahou-shoutengai"
+        },
+        {
+          "episode": 3,
+          "id": "abenobashi-mahou-shoutengai"
+        },
+        {
+          "episode": 4,
+          "id": "abenobashi-mahou-shoutengai"
+        },
+        {
+          "episode": 5,
+          "id": "abenobashi-mahou-shoutengai"
+        },
+        {
+          "episode": 6,
+          "id": "abenobashi-mahou-shoutengai"
+        },
+        {
+          "episode": 7,
+          "id": "abenobashi-mahou-shoutengai"
+        },
+        {
+          "episode": 8,
+          "id": "abenobashi-mahou-shoutengai"
+        },
+        {
+          "episode": 9,
+          "id": "abenobashi-mahou-shoutengai"
+        },
+        {
+          "episode": 10,
+          "id": "abenobashi-mahou-shoutengai"
+        }
+      ]
     },
   ]
 }
 ```
 
-### getAnimesByGender(gender , page)
+### getAnimesByGender([gender] , [page])
 - *Returns a list of `20 titles` per N pages*
 
 | genders           |                      |                    |                   |                     |          page         |
@@ -183,7 +388,7 @@ npm test
 
 
 ```json
-// 20191017205905
+// 20191127205215
 // http://localhost:5000/api/v1/genres/accion/1
 
 {
@@ -195,13 +400,106 @@ npm test
       "type": "Serie",
       "synopsis": "Sahashi Minato ha fallado el examen de ingreso a la Universidad dos veces, no es muy popular con las mujeres y esta desempleado. Un día, Minato se encuentra con una chica llamada Musubi, que literalmente le cae del cielo. Minato pronto aprende que él es un Ashikabi, un ser humano con genes especiales…",
       "state": "Concluido",
-      "episodes": "12"
+      "episodes": "12",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "sekirei"
+        },
+        {
+          "episode": 2,
+          "id": "sekirei"
+        },
+        {
+          "episode": 3,
+          "id": "sekirei"
+        },
+        {
+          "episode": 4,
+          "id": "sekirei"
+        },
+        {
+          "episode": 5,
+          "id": "sekirei"
+        },
+        {
+          "episode": 6,
+          "id": "sekirei"
+        },
+        {
+          "episode": 7,
+          "id": "sekirei"
+        },
+        {
+          "episode": 8,
+          "id": "sekirei"
+        },
+        {
+          "episode": 9,
+          "id": "sekirei"
+        },
+        {
+          "episode": 10,
+          "id": "sekirei"
+        }
+      ]
+    },
+    {
+      "title": "Demonbane (TV)",
+      "id": "demonbane-tv",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/demonbane-tv.jpg",
+      "type": "Serie",
+      "synopsis": "La historia comienza en un mundo donde la ciencia y la magia han avanzado extraordinariamente. La ciudad de Arkham es una metrópolis prospera por magia altamente avanzada. Sin embargo es amenazada por \"Black Lodge\", una organización criminal controlada por Master Telion, quien es el mago más poderoso…",
+      "state": "Concluido",
+      "episodes": "12",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "demonbane-tv"
+        },
+        {
+          "episode": 2,
+          "id": "demonbane-tv"
+        },
+        {
+          "episode": 3,
+          "id": "demonbane-tv"
+        },
+        {
+          "episode": 4,
+          "id": "demonbane-tv"
+        },
+        {
+          "episode": 5,
+          "id": "demonbane-tv"
+        },
+        {
+          "episode": 6,
+          "id": "demonbane-tv"
+        },
+        {
+          "episode": 7,
+          "id": "demonbane-tv"
+        },
+        {
+          "episode": 8,
+          "id": "demonbane-tv"
+        },
+        {
+          "episode": 9,
+          "id": "demonbane-tv"
+        },
+        {
+          "episode": 10,
+          "id": "demonbane-tv"
+        }
+      ]
     },
   ]
 }
 ```
 
-### getAnimeMovies(page)
+### getAnimeMovies([page])
 - *Returns a list of `10 titles` per N pages*
 
 | movies      | page            |
@@ -209,7 +507,7 @@ npm test
 | list of last titles added.| number of pages unknown |
 
 ```json
-// 20191017210027
+// 20191127205406
 // http://localhost:5000/api/v1/movies/1
 
 {
@@ -221,13 +519,49 @@ npm test
       "type": "Pelicula",
       "synopsis": "La trama sigue centrándose en Haseo, quien ya se dio cuenta de que \"The World R:2\" no es un juego común y corriente, ya que el fenómeno del \"AIDA\" afecta a los jugadores en la vida real de forma peligrosa. Para salvar a su amiga Shino, Haseo tratara de encontrar alguna respuesta pero solo se topara…",
       "state": "Concluido",
-      "episodes": " 1"
+      "episodes": "1",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "hack-g-u-trilogy"
+        }
+      ]
+    },
+    {
+      "title": "Aikatsu! Movie",
+      "id": "aikatsu-movie",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/aikatsu-movie.jpg",
+      "type": "Pelicula",
+      "synopsis": "Primera película de Aikatsu!",
+      "state": "Concluido",
+      "episodes": "1",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "aikatsu-movie"
+        }
+      ]
+    },
+    {
+      "title": "Akira",
+      "id": "akira",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/akira.jpg",
+      "type": "Pelicula",
+      "synopsis": "2019: sobre las ruinas de Tokio se alza la metrópolis de Neo-Tokio, una ciudad opresiva e inhumana donde la violencia, el terrorismo y la droga son problemas cotidianos. Las sectas religiosas y los grupos extremistas, aprovechándose de la insatisfacción de los ciudadanos, cultivan el mito de AKIRA,…",
+      "state": "Concluido",
+      "episodes": "1",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "akira"
+        }
+      ]
     },
   ]
 }
 ```
 
-### getAnimeOvas(page)
+### getAnimeOvas([page])
 - *Returns a list of `10 titles` per N pages*
 
 | ovas        | page            |
@@ -235,7 +569,7 @@ npm test
 | list of last titles added.| number of pages unknown |
 
 ```json
-// 20191017210149
+// 20191127205507
 // http://localhost:5000/api/v1/ovas/1
 
 {
@@ -247,11 +581,203 @@ npm test
       "type": "OVA",
       "synopsis": "Episodio especial incluido en el Volumen 1 de Blu-ray/DVD. ",
       "state": "Concluido",
-      "episodes": " 2"
+      "episodes": "2",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "futsuu-no-joshikousei-ga-locodol-yatte-mita-nagarekawa-annai-shite-mita"
+        },
+        {
+          "episode": 2,
+          "id": "futsuu-no-joshikousei-ga-locodol-yatte-mita-nagarekawa-annai-shite-mita"
+        }
+      ]
+    },
+    {
+      "title": "[Locodol]: Christmas Special",
+      "id": "futsuu-no-joshikousei-ga-locodol-yatte-mita-christmas-special",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/futsuu-no-joshikousei-ga-locodol-yatte-mita-christmas-special.jpg",
+      "type": "OVA",
+      "synopsis": "Una nueva Ova de las idols de Futsuu no Joshikousei ga [Locodol] Yatte Mita en Navidad.",
+      "state": "Concluido",
+      "episodes": "1",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "futsuu-no-joshikousei-ga-locodol-yatte-mita-christmas-special"
+        }
+      ]
+    },
+    {
+      "title": "11eyes OVA",
+      "id": "11eyes-ova",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/11eyes-ova.jpg",
+      "type": "OVA",
+      "synopsis": "Ova de 11 eyes",
+      "state": "Concluido",
+      "episodes": "1",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "11eyes-ova"
+        }
+      ]
     },
   ]
 }
 ```
+
+### schedule([day])
+| days        | value           |
+| ----------- | --------------- |
+|  Monday     |    1            |
+|  Tuesday    |    2            |
+|  Wednesday  |    3            |
+|  Thursday   |    4            |
+|  Friday     |    5            |
+|  Saturday   |    6            |
+|  Sunday     |    7            |
+
+```json
+// 20191127203818
+// http://localhost:5000/api/v1/schedule/1
+
+{
+  "schedule": [
+    {
+      "title": "Stand My Heroes",
+      "id": "stand-my-heroes-piece-of-truth",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/stand-my-heroes-piece-of-truth.jpg",
+      "type": "Serie",
+      "synopsis": "Sinopsis: La heroina es un nuevo oficial que trabaja bajo el Departamento de Control de Narcóticos del Ministerio de Salud, tambien conocido como Matori. Los medicamentos narcoticos no funcionan en ella, y la historia comienza cuando ella ingresa al departamento y comienza a trabajar con otros agentes.",
+      "state": "En emision",
+      "episodes": "8",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "stand-my-heroes-piece-of-truth"
+        },
+        {
+          "episode": 2,
+          "id": "stand-my-heroes-piece-of-truth"
+        },
+        {
+          "episode": 3,
+          "id": "stand-my-heroes-piece-of-truth"
+        },
+        {
+          "episode": 4,
+          "id": "stand-my-heroes-piece-of-truth"
+        },
+        {
+          "episode": 5,
+          "id": "stand-my-heroes-piece-of-truth"
+        },
+        {
+          "episode": 6,
+          "id": "stand-my-heroes-piece-of-truth"
+        },
+        {
+          "episode": 7,
+          "id": "stand-my-heroes-piece-of-truth"
+        },
+        {
+          "episode": 8,
+          "id": "stand-my-heroes-piece-of-truth"
+        }
+      ]
+    },
+    {
+      "title": "WATASHI, NOURYOKU WA HEIKINCHI DE TTE ITTA YO NE!",
+      "id": "watashi-nouryoku-wa-heikinchi-de-tte-itta-yo-ne",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/watashi-nouryoku-wa-heikinchi-de-tte-itta-yo-ne.jpg",
+      "type": "Serie",
+      "synopsis": "Sinopsis: Kurihara Misato era un poco mas lista que otras chicas de secundaria y, como resultado, siempre estaba sola y no podia vivir su vida como ella quería. Cuando se reencarno en otro mundo despues de un tragico accidente, queria tener la oportunidad de hacer amigos normales y vivir una vida normal. Entonces le pidio a Dios una cosa ... \"¡Dame habilidades que sean promedio para ese mundo!\" Pero las habilidades que Dios le dio no eran \"promedio\" en absoluto ... Y ahora esta chica, que ha renacido en un mundo donde la magia es real, lucha por encontrar la felicidad simple y ordinaria.",
+      "state": "En emision",
+      "episodes": "8",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "watashi-nouryoku-wa-heikinchi-de-tte-itta-yo-ne"
+        },
+        {
+          "episode": 2,
+          "id": "watashi-nouryoku-wa-heikinchi-de-tte-itta-yo-ne"
+        },
+        {
+          "episode": 3,
+          "id": "watashi-nouryoku-wa-heikinchi-de-tte-itta-yo-ne"
+        },
+        {
+          "episode": 4,
+          "id": "watashi-nouryoku-wa-heikinchi-de-tte-itta-yo-ne"
+        },
+        {
+          "episode": 5,
+          "id": "watashi-nouryoku-wa-heikinchi-de-tte-itta-yo-ne"
+        },
+        {
+          "episode": 6,
+          "id": "watashi-nouryoku-wa-heikinchi-de-tte-itta-yo-ne"
+        },
+        {
+          "episode": 7,
+          "id": "watashi-nouryoku-wa-heikinchi-de-tte-itta-yo-ne"
+        },
+        {
+          "episode": 8,
+          "id": "watashi-nouryoku-wa-heikinchi-de-tte-itta-yo-ne"
+        }
+      ]
+    },
+    {
+      "title": "PHANTASY STAR ONLINE 2: EPISODE ORACLE",
+      "id": "phantasy-star-online-2-episode-oracle",
+      "poster": "https://cdn.jkanime.net/assets/images/animes/image/phantasy-star-online-2-episode-oracle.jpg",
+      "type": "Serie",
+      "synopsis": "Sinopsis: Una adaptacion de anime de televisión del episodio 1-3 de 5 los episodios totales del juego Phantasy Star Online 2. Tambien se creara contenido original de anime.",
+      "state": "En emision",
+      "episodes": "8",
+      "episodeList": [
+        {
+          "episode": 1,
+          "id": "phantasy-star-online-2-episode-oracle"
+        },
+        {
+          "episode": 2,
+          "id": "phantasy-star-online-2-episode-oracle"
+        },
+        {
+          "episode": 3,
+          "id": "phantasy-star-online-2-episode-oracle"
+        },
+        {
+          "episode": 4,
+          "id": "phantasy-star-online-2-episode-oracle"
+        },
+        {
+          "episode": 5,
+          "id": "phantasy-star-online-2-episode-oracle"
+        },
+        {
+          "episode": 6,
+          "id": "phantasy-star-online-2-episode-oracle"
+        },
+        {
+          "episode": 7,
+          "id": "phantasy-star-online-2-episode-oracle"
+        },
+        {
+          "episode": 8,
+          "id": "phantasy-star-online-2-episode-oracle"
+        }
+      ]
+    }
+  ]
+}
+```
+
+
 
 ## **:handshake: Contributing**
 
