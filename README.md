@@ -22,7 +22,7 @@
 
 <img src="assets/jkanime-logo.png">
 
-## :tada: Updates in version v1.0.3 :tada:
+## :tada: Updates in version v2.0.2 :tada:
 - [x] *The schedule method has been added as part of the api.*
 - [x] *The episodeList property has been included in each object.*
 
