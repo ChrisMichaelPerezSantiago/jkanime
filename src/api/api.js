@@ -72,8 +72,6 @@ async function getVideoURL(url) {
   }
 }
 
-
-
 const latestAnimeAdded = async() =>{
   const res = await fetch(`${url}`);
   const body = await res.text();
@@ -98,10 +96,6 @@ const latestAnimeAdded = async() =>{
   return await Promise.all(promises);
 };
 
-//latestAnimeAdded().then(doc =>{
-//  console.log(doc)
-//})
-
 const getAnimeOvas = async (page) => {
   const res = await fetch(`${ovasUrl}/${page}`);
   const body = await res.text();
@@ -121,7 +115,8 @@ const getAnimeOvas = async (page) => {
       type: type,
       synopsis: synopsis,
       state: extra[0] ? extra[0].state : 'unknown',
-      episodes: extra[0] ? extra[0].episodes : 'unknown'
+      episodes: extra[0] ? extra[0].episodes : 'unknown',
+      episodeList: extra[0] ? extra[0].episodeList : null
     })))
   });
   return await Promise.all(promises)
@@ -146,7 +141,8 @@ const getAnimeMovies = async (page) => {
       type: type,
       synopsis: synopsis,
       state: extra[0] ? extra[0].state : 'unknown',
-      episodes: extra[0] ? extra[0].episodes : 'unknown'
+      episodes: extra[0] ? extra[0].episodes : 'unknown',
+      episodeList: extra[0] ? extra[0].episodeList : null
     })))
   });
   return await Promise.all(promises)
@@ -173,7 +169,8 @@ const getAnimesByGender = async (gender , page) => {
       type: type,
       synopsis: synopsis,
       state: extra[0] ? extra[0].state : 'unknown',
-      episodes: episodes || 'unknown'
+      episodes: episodes || 'unknown',
+      episodeList: extra[0] ? extra[0].episodeList : null
     })))
   });
   return await Promise.all(promises);
@@ -199,7 +196,8 @@ const getAnimesListByLetter = async (letter , page) => {
       type: type,
       synopsis: synopsis,
       state: extra[0] ? extra[0].state : 'unknown',
-      episodes: episodes || 'unknown'
+      episodes: episodes || 'unknown',
+      episodeList: extra[0] ? extra[0].episodeList : null
     })))
   });
   return await Promise.all(promises)
@@ -225,7 +223,8 @@ const searchAnime = async (query) => {
       type: type,
       synopsis: synopsis,
       state: extra[0] ? extra[0].state : 'unknown',
-      episodes: episodes || 'unknown'
+      episodes: episodes || 'unknown',
+      episodeList: extra[0] ? extra[0].episodeList : null
     })))
   });
   return await Promise.all(promises)
@@ -268,12 +267,34 @@ const animeContentHandler = async(id) => {
   return await Promise.all(extra);
 };
 
-//latestAnimeAdded().then(doc =>{
-//  console.log(doc)
-//})
-//animeContentHandler('psycho-pass-sinners-of-the-system-case2-first-guardian')
-//  .then(d => console.log(d))
-//animeContentHandler('val-x-love')
+const schedule = async(day) =>{
+  const res = await fetch(`${calenderUrl}`);
+  const body = await res.text();
+  const $ = cheerio.load(body);
+  const promises = [];
+  $('div#content div.full-container div.content-box div#tabla div.app-layout div.box.semana').eq(Number(day - 1)).each((index , element) =>{
+    const $element = $(element);
+    $element.find('div.cajas div.box').each((i , el) =>{
+      const $el = $(el);
+      const title = $el.find('a h3').text();
+      const id = $el.find('a').attr('href').split('/')[3];
+      const poster = $el.find('a').children('img').attr('src');
+      promises.push(animeContentHandler(id).then(extra => ({
+        title: title,
+        id: id,
+        poster: poster,
+        type: extra[0] ? extra[0].type : null,
+        synopsis: extra[0] ? extra[0].sinopsis : null,
+        state: extra[0] ? extra[0].state : null,
+        episodes: extra[0] ? extra[0].episodes : null,
+        episodeList: extra[0] ? extra[0].episodeList : null
+      })))
+    })
+  });
+
+  return await Promise.all(promises);
+};
+
 
 module.exports = {
   latestAnimeAdded,
@@ -282,5 +303,6 @@ module.exports = {
   getAnimesByGender,
   getAnimesListByLetter,
   searchAnime,
-  getAnimeVideoByServer
+  getAnimeVideoByServer,
+  schedule
 }
