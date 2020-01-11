@@ -71,11 +71,6 @@ async function getAnimeVideoByServer(id , chapter) {
   return await Promise.all(serverList);
 }
 
-getAnimeVideoByServer('kyochuu-rettou-movie' , 1)
-  .then(doc =>{
-    console.log(doc);
-  })
-
 async function getVideoURL(url) {
   // This requests the underlying iframe page
   const { data } = await axios.get(url);
