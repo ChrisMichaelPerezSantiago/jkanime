@@ -1,4 +1,4 @@
-# **:triangular_flag_on_post: JKANIME** (version 2.0.3)
+# **:triangular_flag_on_post: JKANIME** (version 2.0.4)
 
 ![node version](https://img.shields.io/badge/node->=10.16.x-brightgreen.svg)
 ![npm version](https://img.shields.io/badge/npm->=6.9.x-brightgreen.svg)
@@ -22,7 +22,7 @@
 
 <img src="assets/jkanime-logo.png">
 
-## :tada: Updates in version v2.0.3 :tada:
+## :tada: Updates in version v2.0.4 :tada:
 - [x] *Now the `getAnimeVideoByServer([id] , [chapter])` function returns a list of the servers available for each episode.*
 
 ## **:package: Main tools used**
