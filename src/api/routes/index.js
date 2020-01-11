@@ -73,11 +73,10 @@ router.get('/search/:title', (req , res) => {
     });
 });
 
-router.get('/video/:id/:chapter/:serverNumber', (req , res) => {
+router.get('/video/:id/:chapter', (req , res) => {
   const id = req.params.id;
   const chapter = req.params.chapter;
-  const serverNumber = req.params.serverNumber;
-  api.getAnimeVideoByServer(id , chapter , serverNumber)
+  api.getAnimeVideoByServer(id , chapter)
     .then(video => {
       res.status(200).json({
         video
