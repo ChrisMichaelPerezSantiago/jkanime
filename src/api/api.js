@@ -25,10 +25,20 @@ function btoa(str) {
 global.btoa = btoa;
 
 
-async function getAnimeVideoByServer(id, chapter, serverNumber) {
-  const { data } = await axios.get(`${url}/${id}/${chapter}/#option${serverNumber}`);
+async function getAnimeVideoByServer(id , chapter) {
+  const { data } = await axios.get(`${url}${id}/${chapter}`);
   const $ = cheerio.load(data);
   const scripts = $('script');
+  const totalEps = $('div#container div#reproductor-box div ul li').length;
+  const serverNames = [];
+  let servers = [];
+
+  $('div#container div#reproductor-box div ul li').each((index , element) =>{
+    const $element = $(element);
+    const serverName = $element.find('a').text();
+    serverNames.push(serverName);
+  })
+
   for(let i = 0; i < scripts.length; i++){
     const $script = $(scripts[i]);
     const contents = $script.html();
@@ -36,15 +46,35 @@ async function getAnimeVideoByServer(id, chapter, serverNumber) {
       // There is a script on the page that will load the iframe dynamically
       // Here we find the script and then request the iframe URL directly
       if ((contents || '').includes('var video = [];')) {
-        let videoPageURL = contents.split(`video[${serverNumber}] = \'<iframe class="player_conte" src="`)[1].split('"')[0];
-        return getVideoURL(videoPageURL);
+        Array.from({length: totalEps} , (v , k) =>{
+          let index = Number(k + 1);
+          let videoPageURL = contents.split(`video[${index}] = \'<iframe class="player_conte" src="`)[1].split('"')[0];
+          servers.push({iframe: videoPageURL});
+        });
       }
     }catch(err) {
       return null;
     }
   }
+  let serverList = [];
+  let serverTempList = [];
+  for(const [key , value] of Object.entries(servers)) {
+    let video = await getVideoURL(value.iframe)
+    serverTempList.push(video);
+  }
+  Array.from({length: serverTempList.length} , (v , k) =>{
+    let name = serverNames[k];
+    let video = serverTempList[k];
+    serverList.push({server: name, video: video});
+  });
+
+  return await Promise.all(serverList);
 }
 
+getAnimeVideoByServer('kyochuu-rettou-movie' , 1)
+  .then(doc =>{
+    console.log(doc);
+  })
 
 async function getVideoURL(url) {
   // This requests the underlying iframe page
