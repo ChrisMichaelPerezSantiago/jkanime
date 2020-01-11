@@ -1,4 +1,4 @@
-# **:triangular_flag_on_post: JKANIME** (version 2.0.2)
+# **:triangular_flag_on_post: JKANIME** (version 2.0.3)
 
 ![node version](https://img.shields.io/badge/node->=10.16.x-brightgreen.svg)
 ![npm version](https://img.shields.io/badge/npm->=6.9.x-brightgreen.svg)
@@ -22,9 +22,8 @@
 
 <img src="assets/jkanime-logo.png">
 
-## :tada: Updates in version v2.0.2 :tada:
-- [x] *The schedule method has been added as part of the api.*
-- [x] *The episodeList property has been included in each object.*
+## :tada: Updates in version v2.0.3 :tada:
+- [x] *Now the `getAnimeVideoByServer([id] , [chapter])` function returns a list of the servers available for each episode.*
 
 ## **:package: Main tools used**
 
@@ -97,33 +96,72 @@ npm test
 ## Request & Response Examples
 *It may be that changes are made in the future in the `parameterization structure.`*
 
-### getAnimeVideoByServer(id , chapter , serverNumber)
-## 📣Read this please!📣
-*If the **id** is from a movie, you should only pass the following values as an argument in the function; `chapter = 1`, `serverNumber = 1`*
+### getAnimeVideoByServer([id] , [chapter])
+## 📣Read this please! - Movies📣
+*If the **id** is from a movie, you should only pass the following values as an argument in the function; 
+`id = kyochuu-rettou-movie` and `chapter = 1` 
+The value of the chapter variable must **always be 1***
+
+```javascript
+getAnimeVideoByServer(id , chapter)
+  .then(doc =>{
+    console.log(doc);
+});
+```
+
+
+## 📣Read this please! - Series📣
+*To get the videos (servers) of each chapter, you only need to use the `getAnimeVideoByServer` function that receives the id of the episode as a parameter and the chapter number.* 
+
+*To verify the id of each episode, look at the `episodeList` property:*
+
+```json
+  "episodeList": [
+    {
+      "episode": 1,
+      "id": "psycho-pass-3"
+    },
+    {
+      "episode": 2,
+      "id": "psycho-pass-3"
+    }
+  ]
+```
+
+```javascript
+getAnimeVideoByServer('psycho-pass-3' , 1)
+  .then(doc =>{
+    console.log(doc);
+});
+```
 
 ```json
 // 20191017204837
-// http://localhost:5000/api/v1/video/boruto-naruto-next-generations/1/1
+// http://localhost:5000/api/v1/video/psycho-pass-3/1
 
-{
-  "video": "https://jkanime.net/stream/jkmedia/04bcce3274dfe2351ac5ebbf27031a56/fa0b00de20f2ba354db895a1e954c6c4/1/c56a43a4f34c542c7708000aab29c8b1/"
-}
+[
+  {
+    server: 'Desu',
+    video: 'https://storage.googleapis.com/marosita.appspot.com/phycopasstres-01.mp4'
+  },
+  {
+    server: 'Okru',
+    video: 'https://storage.googleapis.com/marosita.appspot.com/phycopasstres-01.mp4'
+  },
+  {
+    server: 'Xtreme S',
+    video: 'https://jkanime.net/stream/jkmedia/50e5306e909355885a922c22ed5de2d4/0f40333b749a2a6d1bc5706accd73329/1/c56a43a4f34c542c7708000aab29c8b1/'
+  },
+  {
+    server: 'MixDrop',
+    video: 'https://storage.googleapis.com/marosita.appspot.com/phycopasstres-01.mp4'
+  },
+  {
+    server: 'Verystream',
+    video: 'https://storage.googleapis.com/marosita.appspot.com/phycopasstres-01.mp4'
+  }
+]
 ```
-
-| id          | chapter         |   server number |
-| ----------- | --------------- | ----------------
-| anime title | episode number  |    [1 .. 7]     |
-
-
-| server         | number    |  
-| -------------- | -----------| 
-| Desu           |   1        | 
-| Xtreme S       |   2        |
-| MixDrop        |   3        |
-| Okru           |   4        |
-| Openload       |   5        |
-| RapidVideo     |   6        |
-| Verystream     |   7        |
 
 
 ### latestAnimeAdded()
