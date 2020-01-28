@@ -16,7 +16,7 @@
  <a href="https://nodei.co/npm/jkanime/"><img src="https://nodei.co/npm/jkanime.png"></a>
 
 
-> This API will give you access to the content of the jkanime page, you can see the entire catalog and enjoy each chapter.
+> 💡 The best API to extract data from jkanime, see the latest chapters of the anime of the moment without any restrictions with their respective servers for free. You can see the entire catalog and enjoy each chapter.
 
 ---
 
