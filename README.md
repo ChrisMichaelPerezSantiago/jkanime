@@ -40,6 +40,11 @@
 
 ---
 
+
+## :rocket: Custom Jkanime API Link
+[Jkanime API](https://jkanime.chrismichael.now.sh/api/v1)
+
+
 ## **:wrench: Developer usage**
 
 ### **Set up project**
