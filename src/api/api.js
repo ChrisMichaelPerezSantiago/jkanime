@@ -24,6 +24,21 @@ function btoa(str) {
 // The script we execute below depends on the btoa function to exist
 global.btoa = btoa;
 
+async function getAnimeDetails(id){
+  let anime = []
+  anime.push(animeContentHandler(id).then(extra => ({
+    title: extra[0] ? extra[0].title : 'unknown',
+    id: id,
+    poster: extra[0] ? extra[0].poster : 'unknown',
+    type: extra[0] ? extra[0].type : 'unknown',
+    synopsis: extra[0] ? extra[0].sinopsis : 'unknown',
+    state: extra[0] ? extra[0].state : 'unknown',
+    genres: extra[0] ? extra[0].genres : null,
+    episodes: extra[0] ? extra[0].episodes : 'unknown',
+    episodeList: extra[0] ? extra[0].episodeList : 'unknown'
+  })))
+  return await Promise.all(anime);
+}
 
 async function getAnimeVideoByServer(id , chapter) {
   const { data } = await axios.get(`${url}${id}/${chapter}`);
@@ -79,6 +94,15 @@ async function getVideoURL(url) {
   if(video.length){
     // Sometimes the video is directly embedded
     const src = $(video).find('source').attr('src');
+    if(src.includes("jkmedia")){
+      return axios.get(src, {
+            maxRedirects: 0,
+            validateStatus: null
+          })
+          .then(res => {
+            return res.headers.location || null;
+          })
+    }
     return src || null;
   }
   else{
@@ -249,7 +273,7 @@ const searchAnime = async (query) => {
       synopsis: synopsis,
       state: extra[0] ? extra[0].state : 'unknown',
       episodes: episodes || 'unknown',
-      episodeList: extra[0] ? extra[0].episodeList : null
+      episodeList: extra[0] ? extra[0].episodeList : null,
     })))
   });
   return await Promise.all(promises)
@@ -274,19 +298,33 @@ const animeContentHandler = async(id) => {
       id: id
     }
   });
-  
+
   $('div#container div.serie-info').each(async(index, element) => {
     const $element = $(element);
+    let title = $element.find('div.info-content h2').text().trim();
+    let poster = $element.find('div.cap-portada').children('img').attr('src');
     let sinopsis = $element.find('div.sinopsis-box p.pc').text().trim();
     let type = $element.find('div.info-content div.info-field span.info-value').first().text().split('\n')[0].trim();
     let state = $element.find('div.info-content div.info-field span.info-value b').last().text();
+    //let generos = [];
+    const genres = [];
+    $('div#cats a').each(async(index , element) => {
+      const $element = $(element);
+      const name = $element.text();
+      genres.push({name: name});
+    });
     const content = {
+      title: title,
+      poster: poster,
       type: type,
       sinopsis: sinopsis,
       state: state,
+      genres: genres,
       episodes: episodes_aired,
       episodeList: episodes_List
     }
+    console.log(content)
+
     extra.push(content);
   })
   return await Promise.all(extra);
@@ -329,5 +367,6 @@ module.exports = {
   getAnimesListByLetter,
   searchAnime,
   getAnimeVideoByServer,
+  getAnimeDetails,
   schedule
 }

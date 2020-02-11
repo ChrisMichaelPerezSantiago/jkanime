@@ -85,7 +85,15 @@ router.get('/video/:id/:chapter', (req , res) => {
       console.log(err)
     });
 });
-
+router.get('/anime/:id', (req , res) => {
+  const id = req.params.id;
+  api.getAnimeDetails(id)
+    .then(anime => {
+      res.status(200).json(anime[0]);
+    }).catch((err) =>{
+      console.log(err)
+    });
+});
 router.get('/schedule/:day', (req , res) => {
   const day = req.params.day;
   api.schedule(day)
