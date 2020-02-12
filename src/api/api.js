@@ -4,7 +4,6 @@ const axios = require('axios');
 const { parseTable } = require('@joshuaavalon/cheerio-table-parser');
 const {url, searchUrl, searchUrlLetter, genderUrl, moviesUrl, ovasUrl , calenderUrl} = require('./urls');
 
-
 /****
  * @author w3cj
  * @type contributor
