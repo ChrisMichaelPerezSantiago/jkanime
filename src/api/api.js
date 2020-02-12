@@ -306,9 +306,8 @@ const animeContentHandler = async(id) => {
     let poster = $element.find('div.cap-portada').children('img').attr('src');
     let sinopsis = $element.find('div.sinopsis-box p.pc').text().trim();
     let type = $element.find('div.info-content div.info-field span.info-value').first().text().split('\n')[0].trim();
-     let array_fragment = $element.find('div.info-content div.info-field span.info-value');
-    let state = $element.find('div.info-content div.info-field span.info-value')[array_fragment.length - 2].text();
-    let date = $element.find('div.info-content div.info-field span.info-value b').last().text();
+    let date = $element.find('div.info-content div.info-field span.info-value').reverse()[1].text();
+    let state = $element.find('div.info-content div.info-field span.info-value b').last().text();
     //let generos = [];
     const genres = [];
     $('div#cats a').each(async(index , element) => {
