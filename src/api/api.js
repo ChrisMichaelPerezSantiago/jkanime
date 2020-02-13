@@ -286,12 +286,15 @@ const animeContentHandler = async(id) => {
   const $ = cheerio.load(body);
   const eps_temp_list = [];
   let episodes_aired = '';
-  $('div#container div.left-container div.navigation a').each(async(index , element) => {
+  $('div#container div.left-container div.navigation a.numbers').each(async(index , element) => {
+    //Aqui podria ir sacando los episodios desde el api de jkanime y sacar la imagen de paso
       const $element = $(element);
       const total_eps = $element.text();
       eps_temp_list.push(total_eps);
   })
-  try{episodes_aired = eps_temp_list[0].split('-')[1].trim();}catch(err){}
+  try{
+    episodes_aired = eps_temp_list[eps_temp_list.length-1].split('-')[1].trim();
+  }catch(err){}
   const episodes_List = Array.from({length: episodes_aired} , (v , k) =>{
     return{
       episode: k + 1,
