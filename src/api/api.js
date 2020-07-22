@@ -145,6 +145,35 @@ const latestAnimeAdded = async() =>{
   return await Promise.all(promises);
 };
 
+const ultraTrim = text => {
+  return text.replace(/\s/g, " ").replace(/  +/g, " ").trim();
+};
+
+const latestChaptersAdded = async () => {
+  const res = await fetch(`${url}`);
+  const body = await res.text();
+  const $ = cheerio.load(body);
+  const promises = [];
+  $('div[class="overview"]').find("a").each(function (index, element) {
+      const $element = $(element);
+      const title = $element.attr("title");
+      const id = $element.attr("href").split("/")[3];
+      const poster = $element.find("img").attr("src");
+      const episode = ultraTrim($element.find("span.episode").text());
+      const publishedTime = ultraTrim($element.find("span.ep-time").text());
+      promises.push({
+        title: title,
+        id: id,
+        poster: poster,
+        episode: episode,
+        publishedTime: publishedTime
+      });
+    });
+
+  return await Promise.all(promises);
+
+};
+
 const getAnimeOvas = async (page) => {
   const res = await fetch(`${ovasUrl}/${page}`);
   const body = await res.text();
@@ -366,6 +395,7 @@ const schedule = async(day) =>{
 
 module.exports = {
   latestAnimeAdded,
+  latestChaptersAdded,
   getAnimeOvas,
   getAnimeMovies,
   getAnimesByGender,

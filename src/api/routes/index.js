@@ -13,6 +13,19 @@ router.get('/latestAnimes' , (req , res) =>{
     });
 });
 
+router.get("/latestChapters", (req, res) => {
+  api
+    .latestChaptersAdded()
+    .then(chapters => {
+      res.status(200).json({
+        chapters
+      });
+    })
+    .catch(err => {
+      console.error(err);
+    });
+});
+
 router.get('/ovas/:page' , (req , res) =>{
   const page = req.params.page;
   api.getAnimeOvas(page)
