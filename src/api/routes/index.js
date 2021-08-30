@@ -6,10 +6,25 @@ router.get('/latestAnimes' , (req , res) =>{
   api.latestAnimeAdded()
     .then(animes =>{
       res.status(200).json({
-        animes
+        animes,
+        status: 200,
+        message: 'success'
       });
     }).catch((err) =>{
       console.error(err);
+    });
+});
+
+router.get('/genres', (req, res) => {
+  api.getGenres()
+    .then(genres => {
+      res.status(200).json({
+        genres,
+        status: 200,
+        message: 'success'
+      });
+    }).catch((err) => {
+      console.log(err);
     });
 });
 
@@ -64,7 +79,13 @@ router.get('/letter/:letter/:page', (req , res) => {
 router.get('/search/:title', (req , res) => {
   const title = req.params.title;
   api.searchAnime(title)
-    .then(animes => {
+    .then(an => {
+      const animes = []
+      an.forEach(element => {
+        if (element.title != "") {
+          animes.push(element)
+        }
+      }),
       res.status(200).json({
         animes
       });
@@ -83,6 +104,28 @@ router.get('/video/:id/:chapter', (req , res) => {
       });
     }).catch((err) =>{
       console.log(err)
+    });
+});
+router.get('/anime/:id', (req , res) => {
+    const id = req.params.id;
+    api.getAnimeDetails(id)
+        .then(anime => {
+            res.status(200).json(anime[0]);
+        }).catch((err) =>{
+        console.log(err)
+    });
+});
+
+router.get('/media/:id1/:id2/:id3/', (req , res) => {
+    const id1 = req.params.id1;
+    const id2 = req.params.id2;
+    const id3 = req.params.id3;
+    api.getMedia(id1, id2, id3)
+        .then(anime => {
+            //res.status(200).json(anime);
+            res.redirect(anime);
+        }).catch((err) =>{
+        console.log(err)
     });
 });
 
