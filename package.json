@@ -53,7 +53,7 @@
     "compose-middleware": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "fuse.js": "^3.4.5",
     "helmet": "^3.15.0",
     "morgan": "^1.9.1",
